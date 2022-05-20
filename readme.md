@@ -20,6 +20,9 @@
 [ ] write the app dockerfile
 [ ] push the image to ECR
 [ ] building and pushing the image using CircleCI
+
+## RDS-Configuration
+
 ![db-identifier](https://user-images.githubusercontent.com/98274959/169576510-6e98f801-9c53-4b2d-8cdf-3dfeb79a5f97.png)
 ![endpoint port](https://user-images.githubusercontent.com/98274959/169576545-fb6749e4-2610-4787-b469-94003e0651a6.png)
 ![db-name](https://user-images.githubusercontent.com/98274959/169576575-2b7cec2c-d12e-4b8e-9d72-959df6b17526.png)
