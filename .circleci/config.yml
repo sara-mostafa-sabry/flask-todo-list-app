@@ -1,0 +1,58 @@
+version: 2.1
+
+image: &docker_image
+  docker:
+      - image: cimg/go:1.17
+
+orbs: 
+  aws-cli: circleci/aws-cli@3.1.0
+  aws-ecr: circleci/aws-ecr@8.1.2
+
+jobs:
+  build_image:
+    <<: *docker_image
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: build docker image
+          command: |
+            sudo apt install tar gzip --yes
+            docker build --tag=todo-list:${CIRCLE_WORKFLOW_ID:0:7} . 
+            docker save -o todo-list:${CIRCLE_WORKFLOW_ID:0:7}.tar.gz todo-list:${CIRCLE_WORKFLOW_ID:0:7}
+            ls ~/project/
+            docker images 
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - project/. 
+
+  push_to_ecr:
+    <<: *docker_image
+    executor: aws-cli/default 
+    steps:
+      - checkout
+      - aws-cli/setup:
+          profile-name: default 
+      - setup_remote_docker
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: push docker image to ECR
+          command: |
+            ls ~/project/
+            aws --version
+            aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${AWS_ECR_ACCOUNT_URL}
+            docker load -i "/home/circleci/project/todo-list:${CIRCLE_WORKFLOW_ID:0:7}.tar.gz"
+            docker images
+            docker tag todo-list:${CIRCLE_WORKFLOW_ID:0:7} ${AWS_ECR_ACCOUNT_URL}/todo-list:${CIRCLE_WORKFLOW_ID:0:7}
+            docker push ${AWS_ECR_ACCOUNT_URL}/todo-list:${CIRCLE_WORKFLOW_ID:0:7}
+
+workflows:
+  build_and_push_image:
+    jobs:
+      - build_image
+      - push_to_ecr:
+          requires:
+            - build_image
