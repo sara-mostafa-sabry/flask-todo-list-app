@@ -30,17 +30,15 @@
 ![add topics](https://user-images.githubusercontent.com/98274959/169576626-ccc68a0d-1a5b-46da-b9b7-06b319389c71.png)
 ![dbeaver](https://user-images.githubusercontent.com/98274959/169576647-cfb1c64e-e97c-4e48-85bc-03ecc4f9de40.png)
 
+
 ### ECR-Configuration
 
 ![ECR-Policy 1](https://user-images.githubusercontent.com/98274959/169587944-9d0bacb5-68ad-44b4-8118-0c0f6f1cc4be.png)
-
 ![ECR-Policy 2](https://user-images.githubusercontent.com/98274959/169587991-6b1d7e7a-f736-4a77-b645-dbbd35cf8f25.png)
-
 ![ECR-Policy 3](https://user-images.githubusercontent.com/98274959/169588060-c134e5ac-2239-4ab3-a77b-2a6ff42f0d57.png)
+
 
 ### Circleci
 
 ![circleci](https://user-images.githubusercontent.com/98274959/169588161-df379160-4bb9-40fa-9e2b-1b97cf62007c.png)
-
-
 ![pushed image](https://user-images.githubusercontent.com/98274959/169588237-334c206c-b860-40ed-93ec-115ac7d20f71.png)
