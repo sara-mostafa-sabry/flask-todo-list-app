@@ -22,6 +22,7 @@
 [ ] building and pushing the image using CircleCI
 
 <hr>
+
 #### RDS-Configuration
 
 ##### DB-Identifier
